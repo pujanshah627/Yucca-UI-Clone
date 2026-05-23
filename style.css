@@ -1,203 +1,932 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing:border-box;
-}
-body{
-  width: 100%;
-  overflow-x: hidden;
-  background-image: url("assets/yucca_bg.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  min-height: 100vh;
+html {
+  scroll-behavior: smooth;
 }
 
-* {
+
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+}
+
+.outer-first{
+    width: 100%;
+    height: 100vh;
+    background: url("https://yucca.co.za/wp-content/uploads/2025/09/yucca-packaging-homepage-intro-plastic-cups-for-iced-chilled-drinks-2.jpg");
+    background-size: cover;
+    background-position: center;
+
 }
 
 header {
+    /* Existing Styles */
+    width: 100%;
+    height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 40px;
-    background-color: #E2D9CD;
-    transition: all 0.3s ease;
-    height: 120px;
+    padding: 0 100px;
+    border-bottom: 0.1px solid black;
+    font-weight: 300;
+    background-color: rgba(255, 255, 255, 0);
+    
+    
+    /* Correct Positioning */
+    position: fixed;
+    top: 0 !important; /* Force it to stay at top */
+    left: 0;
+    z-index: 1000;
+
+    /* THE FIX: Explicitly define the starting transform */
+    transform: translateY(0);
+    
+    /* THE FIX: Use a reasonable speed. 10s is too slow to see. */
+   transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1) !important;
+    
+    will-change: transform, background-color;
 }
 
-header:hover {
-    background-color: #FFFFFF;
+header.scrolled {
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 2s ease, padding 2s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    
 }
 
-.logo img {
-    height: 60px;
-    width: auto;
+.header-hidden {
+    transform: translateY(-100%) !important;
 }
 
-nav {
+
+.left{
+    height: 100%;
+    width: 50%;
     display: flex;
-    align-items: flex-start;
-    gap: 60px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
 }
 
-.nav-group {
+.logo{
+    height: 100%;
+
     display: flex;
-    flex-direction: row;
-    gap: 20px;
-
+    align-items: center;
 }
 
-.nav-link {
-    text-decoration: none;
-    color: #333;
-    font-size: 24px;
-    font-weight: 400;
-}
-
-.sub-text {
-    font-size: 22px;
-    color: #333;
-    margin-top: 5px;
-}
-
-header:hover .sub-text {
-    color: #FFFFFF;
-}
-
-.icons {
-    display: flex;
-    gap: 15px;
-    border-left: 1px solid rgba(0,0,0,0.1);
-    padding-left: 20px;
-}
-
-.icon {
+.logo-title h1{
     font-size: 20px;
-    color: #555;
-    background: #8e8881;
-    color: white;
-    padding: 8px;
-    border-radius: 4px;
+    font-weight: 600;
+    color: #12271D;
+}
+
+.nav-links>ul>li>a::after{
+    content: "";
+    position: absolute;
+
+    left: 0px;
+    width: 0px;
+    height: 2px;
+    bottom: -2px;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 0.6s ease;
+}
+
+.nav-links>ul>li>a {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-links>ul>li>a:hover::after{
+    width: 100%;
+}
+
+.nav-links ul{
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    text-decoration: none;
+}
+
+.nav-links ul li a{
+    text-decoration: none;
+    color: #12271D;
+    font-size: 16px;
+
+}
+
+.right{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.right a{
+    text-decoration: none;
+    color: #12271D;
+    font-size: 13px;
+    margin-right: 20px;
+}
+
+.l {
+    border: 1px solid black;
+    padding: 3px ;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
+}
+.r {
+    border: 1px solid black;
+    padding: 3px ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* 
+-------------------body */
+
+.body{
+    width: 100%;
+
+    height: 89%;
+    display: flex;
+    flex-direction: column;
+    padding: 100px;
+    gap: 50px;
+    justify-content: space-between;
 }
 
-header:hover .icon {
-    background: #777;
+.intro{
+    font-size: 60px;
+    font-weight: 300;
+    margin-top: 100px;
+}
+.cards{
+    display: flex;
+    gap: 40px;
+    margin-top: 100px;
+}   
+.same{
+    height: 250px;
+    width: 250px;
+    background-color: rgb(255, 255, 255,0.3);
+    border-radius: 10%;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
-.text{
-  position:absolute;
-  top:17%;
-  left:10%;
-  font-size: 70px;
-  color:black;
-  font-weight: 300;
-  font-family:Magnetik, sans-serif, sans-serif;
-  font-size: 70px;
+.same > div{
+    width: 80%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 300;
+    overflow: hidden;
 }
 
-a{
-  margin: 20px;
-  color: black;
-  text-decoration: none;
+.same .inside h4{
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    font-weight: 300;
 }
 
-.card{
-  width: 320px;
-  height: 300px;
-  background-color: rgba(255, 228, 196, 0.2);
-  backdrop-filter: blur(20px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  border-radius: 20px;
-}
-#two{
-  display: flex;
-  flex-direction: row;
-  margin-top: 400px;
-  gap: 10px;
-  margin-left: 130px;
-  margin-top:280px;
+.same:hover .inside> h4{
+    transform: translateY(-40px);
+    transition: 0.7s ease;
 }
 
-.b{
-
-overflow: hidden;
-height: 50px;
+.inner-div{
+   position: absolute;
+   height: 250px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    top: 15px;
+    gap: 10px;
+    
 }
 
-.b h1{
-transition: 1s ease;
+.inner-div > div{
+    height: 15px;
+    width: 250px;
+
+    overflow: hidden;
+    
 }
 
-.card:hover .b>h1{
-  margin-top: -200px;
+.inner-div div h4{
+    color: black;
+    font-size: 10px;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
-.c{
+.inner-div > div{
+    overflow: hidden;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.inner-div > div > h4{
+    transform: translateY(40px);
+}
+
+.same:hover .inner-div > div > h4{
+    transform: translateY(0px);
+    transition: 0.7s ease;
+}
+
+.line{
+    position: absolute;
+    height: 2px;
+    width: 0px;
+    display: flex;
+    flex-direction: column;
+    top: 190px;
+    gap: 10px;
+    background-color: black;
+}
+
+.same:hover .line{
+    width: 200px;
+    transition: 0.7s ease;
+}
+
+.after-line{
+    position: absolute;
+    height: 20px;
+    width: 200px;
+    top: 205px;
+    
+    overflow: hidden;
+}
+
+.after-line p{
+    font-size: 15px;
+    font-weight: 300;
+    transition: opacity 0.4s ease;
+    transform: translateX(-400px);
+}
+
+.same:hover .after-line p{
+    transform: translateX(0px);
+    transition: 0.4s ease;
+}
+
+.Arrow{
+    position: absolute;
+    top: 205px;
+    right: 40px;
+    width: 30px;
+    height: 20px;
+    font-weight: 300;
+    font-size: 15px;
+    overflow: hidden;
+}
+
+.Arrow > i{
+    transform: translateX(-400px) scale(1.3, 1);
+}
+
+.same:hover .Arrow >i{
+    transform: translateX(3px);
+    transition: .4s ease;
+    
+}
+
+/* ------next-section--------- */
+
+
+.next-section{
+    width: 100%;
+    height: 100vh;
+    
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.plate{
+    width: 900px;
+    height: 900px;
+}
+
+.next-section>span{
+    position: absolute;
+    top: -10px;
+    left: 530px;
+}
+
+.last-title{
+    position: absolute;
+    top: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 350;
+    gap: 15px;
+}
+
+
+.center-start {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 98vw;
+    font-size: 65px;
+    display: flex; /* Keeps spans in a single line */
+    position: absolute;
+    top: 450px;
+  }
+
+  .scroll-wrapper {
+    display: flex;
+    animation: marquee-scroll 24s linear infinite;
+  }
+
+  .scroll-wrapper span {
+    display: inline-block;
+    padding-right: 50px; 
+  }
+
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
+  }
+
+.center-start-upper {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 98vw; 
+    font-size: 65px;
+    display: flex;
+    position: absolute;
+    top: 350px;
+  }
+
+  .scroll-wrapper-upper {
+    display: flex;
+    /* Start the first set of text "off-screen" to the left */
+    animation: marquee-scroll-reverse 25s linear infinite;
+  }
+
+  .scroll-wrapper-upper span {
+    display: inline-block;
+    padding-right: 50px; 
+  }
+
+  @keyframes marquee-scroll-reverse {
+    /* We start at -50% (the first span is hidden to the left) */
+    0% { transform: translateX(-50%); }
+    /* We move it to 0 (the second span moves into the first span's place) */
+    100% { transform: translateX(0%); }
+  }
+
+  .next-section>button{
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 300;
+    border: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+    position: absolute;
+    top: 800px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+
+  .third-section{
+    width: 100%;
+    height: 100vh;
+      background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+.third-section::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)),
+      var(--bg-img);
+    background-size: cover;
+    background-position: center;
+    opacity: var(--fade, 1);
+    transition: opacity 2s ease-in-out;
+    z-index: 0;
+}
+
+.third-section{
+    --bg-img: url("https://yucca.co.za/wp-content/uploads/2025/09/yucca-packaging-for-food-service-takeout-catering-deli-smoothies-coffee-desserts.jpg");
+}
+
+  .outer-card{
+    height: 65%;
+    width: 100%;
+    
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    z-index: 10;
+  }
+
+   .inner-card{
+        width: 25%;
+        height: 75%;
+        background-color: rgb(255, 255, 255,0.5);
+        border-radius: 20px;
+        backdrop-filter: blur(20px);
+        display: flex;
+        flex-direction: column;
+        padding: 40px;
+        gap: 10px;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        opacity: 0.8;
+   }
+
+   .in-in-in{
+     position: absolute;
+     top: 0px;
+     height: 100%;
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     padding: 30px;
+     gap: 15px;
+   }
+
+   .in-in{
+     height: 70px;
+     width: 400px;
+    font-size: 50px;
+    overflow: hidden;
+    
+   }
+
+   .in-in>h4{
+    font-weight: 400;
+    transform: translateY(60px);
+   }
+
+   .inner-card>.in-in-in>.l-in{
+        font-size: 17px;
+        font-weight: 300;
+        height: 30px;
+        overflow: hidden;
+   }
+   .inner-card>.in-in-in>.l-in>p{
+        transform: translateY(60px);
+   }
+
+   .inner-card:hover .in-in-in>.in-in> h4{
+        transform: translateY(0px);
+        transition: 0.7s ease;
+    }
+
+    .inner-card:hover .in-in-in>.l-in>p{
+        transform: translateY(0px);
+        transition: 0.7s ease;
+    }
+
+    .Center-text{
+        
+        height: 60px;
+        width: 359px;
+        top: 50%;
+        left: 25%;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .Center-text>h4{
+        font-weight: 350;
+        font-size: 45px;
+        transform: translateY(0px);
+        color: white;
+    }
+    .inner-card:hover .Center-text>h4{
+        transform: translateY(-64px);
+        transition: 0.6s ease;
+    }
+
+    .LINE{
+    position: absolute;
+    height: 2px;
+    width: 0px;
+    background-color: black;
+        top: 350px;
+    }
+    .inner-card:hover .LINE{
+        width: 400px;
+        transition: 0.5s ease;
+    }
+
+    .AFTER_LINE{
+        position: absolute;
+        height: 25px;
+        width: 200px;
+        top: 380px;
+        left: 40px;
+        overflow: hidden;
+    }
+
+    .AFTER_LINE>p{
+        font-size: 20px;
+        transform: translateX(-130px);
+    }
+
+    .inner-card:hover .AFTER_LINE>p{
+        transform: translateX(0px);
+        transition: 0.6s ease;
+    }
+
+    .Arrow-2{
+        position: absolute;
+        top: 380px;
+        right: 60px;
+        width: 30px;
+        height: 20px;
+        font-weight: 300;
+        font-size: 20px;
+        overflow: hidden;
+    }
+
+    .Arrow-2 > i{
+        transform: translateX(-400px) scale(10, 3);
+    }
+
+    .inner-card:hover .Arrow-2 >i{
+        transform: translateX(3px);
+        transition: .5s ease;
+        
+    }
+
+
+
+    /* .blurred-layer {
+    background: url("https://yucca.co.za/wp-content/uploads/2025/09/yucca-packaging-for-food-service-takeout-catering-deli-smoothies-coffee-desserts.jpg");
   position: absolute;
-  background-color: #fffdf5;
+  bottom: 0;
+  width: 100%;
   height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: .5s ease;
-  border-radius: 20px;
- display: flex;
- flex-direction: column;
- justify-content: space-between;
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  z-index: 1;
+
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+
+  -webkit-mask-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 1),
+    rgba(0, 0, 0, 0)
+  );
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  backdrop-filter: blur(20px);
+} */
+
+
+
+.inner-card{
+    width: 25%;
+    height: 70%;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    gap: 10px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+    transition: transform 0.7s ease, box-shadow 0.5s ease;
+    transform: scale(1);
+}
+.inner-card:hover{
+    transform: scale(1.08);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+    z-index: 20;
+}
+.third-section:hover .inner-card:not(:hover){
+    transform: scale(0.8);
+    opacity: 0.85;
+}
+  
+.forth-section{
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(255, 255, 255,0.5);
+    padding: 30px 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+}
+
+.up{
+    height: 35%;
+    width: 100%;
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 300;
+    display: flex;
+}
+
+.up-left{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+    flex-direction: column;
+}
+.up-left>h1{
+    font-size: 50px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.up-right{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    
+    flex-direction: column;
+}
+
+.up-right>button{
+    width: 150px;
+    padding: 12px 13px;
+    font-size: 15px;
+    font-weight: 300;
+    border: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.line-one-below{
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: black;
+    top: 350px;
+    z-index: 50;
+}
+
+.second-up-right > ul > li{
+    padding: 10px 10px;
+    font-size: 40px;
 
 }
 
-.card:hover .c{
-  opacity: 1;
+.second-up-right{
+    display: flex;
+    padding: 80px;
 }
-.f{
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+
+.line-one-below-two{
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: black;
+    top: 670px;
+    z-index: 50;
 }
-.d{
-  height: 25px;
-  overflow: hidden;
+
+.footer{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    
+    font-size: 15px;
+    font-weight: 300;
+    padding: 45px 200px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.up-foot{
+    display: flex;
+    font-size: 50px;
+    font-weight: 300;
+    justify-content: space-between;
+    margin-top: 100px;
+}
+
+.up-foot > i{
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.low-foot{
+    height: 70%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
 
 }
 
-.d p{
-  position: relative;
-  bottom: -25px;
-  transition: 1s ease;
-}
-.card:hover .d p{
-  bottom: 15px;
-}
-.h{
-  width: 0px;
-  border: 1px solid black;
-  transition: 1s ease;
+.low-foot-up{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    width: 100%;
 }
 
-.card:hover .h{
-  width: 100%;
+.div-foot{
+    height: 300px;
+    width: 300px;
+    border: 1px solid black;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.g{
-  padding: 10px;
-  display: flex; 
-  flex-direction: column;
-  gap: 20px;
+
+.Foot-logo{
+    svg{
+        width: 110%;
+        height: 105%;
+    }
+
+    background-color: rgba(0,0,0,0);
+    border: 0px solid black;
 }
-.i{
-  display: flex;
-  justify-content: space-between;
+
+.div-foot>div{
+    height: 40px;
+    font-size: 25px;
+    overflow: hidden;
+}
+
+.div-foot>div>h3{
+    transform: translateY(0px);
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.div-foot:hover>div>h3{
+    transform: translateY(-40px);
+    transition: transform 0.6s ease;   
+}
+
+.inside-heading{
+    color: white;
+
+}
+
+
+.inner-foot-1 {
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+    transform: translateZ(0);
+}
+.inner-foot-1::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image: url("https://yucca.co.za/wp-content/uploads/2025/09/service.jpg");
+    background-size: cover;
+    background-position: center;
+
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+    will-change: opacity;
+    backface-visibility: hidden;
+}
+.inner-foot-1:hover::before {
+    opacity: 1;
+}
+.inner-foot-1 > * {
+    position: relative;
+    z-index: 1;
+}
+
+.inner-foot-1:hover{
+    border-radius: 60px;
+    transition: 1s ease;
+}
+
+
+.inner-foot-2 {
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+    transform: translateZ(0);
+}
+.inner-foot-2::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image: url("https://yucca.co.za/wp-content/uploads/2025/09/processing.jpg");
+    background-size: cover;
+    background-position: center;
+
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+    will-change: opacity;
+    backface-visibility: hidden;
+}
+.inner-foot-2:hover::before {
+    opacity: 1;
+}
+.inner-foot-2 > * {
+    position: relative;
+    z-index: 1;
+}
+
+.inner-foot-2:hover{
+    border-radius: 60px;
+    transition: 1s ease;
+}
+
+
+.inner-foot-3 {
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+    transform: translateZ(0);
+}
+
+.inner-foot-3::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image: url("https://yucca.co.za/wp-content/uploads/2025/09/Agriculture.jpg");
+    background-size: cover;
+    background-position: center;
+
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+
+    will-change: opacity;
+    backface-visibility: hidden;
+}
+
+.inner-foot-3:hover::before {
+    opacity: 1;
+}
+
+.inner-foot-3 > * {
+    position: relative;
+    z-index: 1;
+}
+
+.inner-foot-3:hover{
+    border-radius: 60px;
+    transition: 1s ease;
+}
+
+
+.low-foot-down{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    height: 70px;
+    width: 98%;
+    border: 1px solid black;
 }
